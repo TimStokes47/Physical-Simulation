@@ -16,3 +16,8 @@ bool Input::isKeyPressed(int keycode) const
 {
 	return (glfwGetKey(static_cast<GLFWwindow*>(_windowHandle), keycode) == GLFW_PRESS);
 }
+
+bool Input::isMouseButtonPressed(int buttonCode) const
+{
+	return (glfwGetMouseButton(static_cast<GLFWwindow*>(_windowHandle), buttonCode) == GLFW_PRESS);
+}

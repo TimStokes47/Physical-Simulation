@@ -17,6 +17,9 @@ int main()
 		if (input.isKeyPressed(GLFW_KEY_A)) {
 			std::cout << "A\n";
 		}
+		if (input.isMouseButtonPressed(GLFW_MOUSE_BUTTON_RIGHT)) {
+			std::cout << "Right\n";
+		}
 	}
 	return 0;
 }
