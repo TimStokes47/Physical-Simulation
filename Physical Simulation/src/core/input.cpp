@@ -7,7 +7,12 @@ Input::Input(const Window& window)
 {
 }
 
-void Input::pollEvents()
+void Input::pollEvents() const
 {
 	glfwPollEvents();
+}
+
+bool Input::isKeyPressed(int keycode) const
+{
+	return (glfwGetKey(static_cast<GLFWwindow*>(_windowHandle), keycode) == GLFW_PRESS);
 }
