@@ -3,9 +3,9 @@
 #
 
 # Add source to this project's executable.
-add_library (PhysicalSimulation STATIC "src/maths/vec3" "src/graphics/renderer.cpp")
+add_library (PhysicalSimulation STATIC "src/maths/vec3" "src/graphics/renderer.cpp" "src/graphics/window.cpp")
 
-add_executable (Sandbox "src/Physical Simulation.cpp" "src/graphics/renderer.h")
+add_executable (Sandbox "src/Physical Simulation.cpp")
 target_link_libraries(Sandbox PhysicalSimulation)
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
