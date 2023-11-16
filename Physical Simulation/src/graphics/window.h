@@ -4,6 +4,7 @@
 #include <string>
 
 class Window {
+	friend class Input;
 public:
 	Window(int width, int height, const std::string& title);
 	void swapBuffers();
