@@ -1,5 +1,4 @@
-﻿// Physical Simulation.cpp : Defines the entry point for the application.
-//
+﻿#include "graphics/renderer.h"
 #include "graphics/window.h"
 #include "core/input.h"
 
@@ -9,6 +8,7 @@ int main()
 {
 	Window window(960, 540, "Physical Simulation");
 	Input input(window);
+	Renderer::initialise();
 
 	while (!window.isClosed()) {
 		window.swapBuffers();
