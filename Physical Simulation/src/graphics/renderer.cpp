@@ -7,6 +7,12 @@
 
 void Renderer::initialise() {
 	glewInit();
+	_instance = new Renderer;
+}
+
+Renderer* Renderer::getInstance()
+{
+	return _instance;
 }
 
 void Renderer::clearScreen()
@@ -75,3 +81,5 @@ void Renderer::renderTriangle()
 	glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, nullptr);
 	program.unbind();
 }
+
+Renderer* Renderer::_instance = nullptr;

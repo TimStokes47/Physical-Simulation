@@ -4,9 +4,13 @@
 class Renderer {
 public:
 	static void initialise();
-	static void clearScreen();
+	static Renderer* getInstance();
+	void clearScreen();
 
-	static void renderTriangle();
+	void renderTriangle();
+
+private:
+	static Renderer* _instance;
 };
 
 #endif
