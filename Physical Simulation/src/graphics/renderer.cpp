@@ -1,4 +1,5 @@
 #include "renderer.h"
+#include "renderer.h"
 
 #include <GL/glew.h>
 #include <string>
@@ -26,6 +27,7 @@ Renderer::Renderer()
 	_triangleProgram.compile();
 
 	_triangleRenderData = createRenderData(createTriangleMesh());
+	_planeRenderData = createRenderData(loadMeshFromFile("../../../../Physical Simulation/res/meshes/cube.obj"));
 }
 
 void Renderer::clearScreen()
@@ -38,6 +40,14 @@ void Renderer::renderTriangle()
 	_triangleProgram.bind();
 	glBindVertexArray(_triangleRenderData.vertexArray);
 	glDrawElements(GL_TRIANGLES, _triangleRenderData.indexCount, GL_UNSIGNED_INT, nullptr);
+	_triangleProgram.unbind();
+}
+
+void Renderer::renderPlane()
+{
+	_triangleProgram.bind();
+	glBindVertexArray(_planeRenderData.vertexArray);
+	glDrawElements(GL_TRIANGLES, _planeRenderData.indexCount, GL_UNSIGNED_INT, nullptr);
 	_triangleProgram.unbind();
 }
 

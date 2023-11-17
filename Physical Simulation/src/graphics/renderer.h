@@ -13,12 +13,14 @@ public:
 	void clearScreen();
 
 	void renderTriangle();
+	void renderPlane();
 
 private:
 	static Renderer* _instance;
 
 	ShaderProgram _triangleProgram;
 	RenderData _triangleRenderData;
+	RenderData _planeRenderData;
 };
 
 #endif
