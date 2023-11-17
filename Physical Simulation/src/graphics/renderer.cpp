@@ -17,26 +17,8 @@ Renderer* Renderer::getInstance()
 
 Renderer::Renderer()
 {
-	std::string vertexShaderSource = "#version 330 core\n"
-		"layout (location = 0) in vec3 aPos;\n"
-		"layout (location = 1) in vec3 aColor;\n"
-		"out vec3 color;\n"
-		"void main()\n"
-		"{\n"
-		"   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
-		"	color = aColor;\n"
-		"}\0";
-
-	std::string fragmentShaderSource = "#version 330 core\n"
-		"in vec3 color;\n"
-		"out vec4 FragColor;\n"
-		"void main()\n"
-		"{\n"
-		"FragColor = vec4(color, 1.0f);\n"
-		"}\0";
-
-	Shader vertexShader(vertexShaderSource, GL_VERTEX_SHADER);
-	Shader fragmentShader(fragmentShaderSource, GL_FRAGMENT_SHADER);
+	Shader vertexShader("../../../../Physical Simulation/res/shaders/Triangle Shader.vs", GL_VERTEX_SHADER);
+	Shader fragmentShader("../../../../Physical Simulation/res/shaders/Triangle Shader.fs", GL_FRAGMENT_SHADER);
 
 	_triangleProgram.attachShader(vertexShader);
 	_triangleProgram.attachShader(fragmentShader);

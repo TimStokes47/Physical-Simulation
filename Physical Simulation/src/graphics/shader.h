@@ -6,7 +6,7 @@
 class Shader {
 	friend class ShaderProgram;
 public:
-	Shader(const std::string& shaderSrc, unsigned int shaderType);
+	Shader(const std::string& shaderSrcFilepath, unsigned int shaderType);
 	~Shader();
 
 private:
