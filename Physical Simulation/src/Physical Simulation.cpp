@@ -14,6 +14,8 @@ int main()
 		window.swapBuffers();
 		input.pollEvents();
 
+		Renderer::clearScreen();
+
 		if (input.isKeyPressed(GLFW_KEY_A)) {
 			std::cout << "A\n";
 		}

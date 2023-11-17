@@ -4,6 +4,7 @@
 class Renderer {
 public:
 	static void initialise();
+	static void clearScreen();
 };
 
 #endif
