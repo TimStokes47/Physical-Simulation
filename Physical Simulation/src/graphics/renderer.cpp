@@ -15,6 +15,34 @@ Renderer* Renderer::getInstance()
 	return _instance;
 }
 
+Renderer::Renderer()
+{
+	std::string vertexShaderSource = "#version 330 core\n"
+		"layout (location = 0) in vec3 aPos;\n"
+		"layout (location = 1) in vec3 aColor;\n"
+		"out vec3 color;\n"
+		"void main()\n"
+		"{\n"
+		"   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
+		"	color = aColor;\n"
+		"}\0";
+
+	std::string fragmentShaderSource = "#version 330 core\n"
+		"in vec3 color;\n"
+		"out vec4 FragColor;\n"
+		"void main()\n"
+		"{\n"
+		"FragColor = vec4(color, 1.0f);\n"
+		"}\0";
+
+	Shader vertexShader(vertexShaderSource, GL_VERTEX_SHADER);
+	Shader fragmentShader(fragmentShaderSource, GL_FRAGMENT_SHADER);
+
+	_triangleProgram.attachShader(vertexShader);
+	_triangleProgram.attachShader(fragmentShader);
+	_triangleProgram.compile();
+}
+
 void Renderer::clearScreen()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
@@ -49,37 +77,11 @@ void Renderer::renderTriangle()
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), nullptr);
 	glEnableVertexAttribArray(1);
 	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
-
-
-	std::string vertexShaderSource = "#version 330 core\n"
-		"layout (location = 0) in vec3 aPos;\n"
-		"layout (location = 1) in vec3 aColor;\n"
-		"out vec3 color;\n"
-		"void main()\n"
-		"{\n"
-		"   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
-		"	color = aColor;\n"
-		"}\0";
-
-	std::string fragmentShaderSource = "#version 330 core\n"
-		"in vec3 color;\n"
-		"out vec4 FragColor;\n"
-		"void main()\n"
-		"{\n"
-		"FragColor = vec4(color, 1.0f);\n"
-		"}\0";
 	
-	Shader vertexShader(vertexShaderSource, GL_VERTEX_SHADER);
-	Shader fragmentShader(fragmentShaderSource, GL_FRAGMENT_SHADER);
 
-	ShaderProgram program;
-	program.attachShader(vertexShader);
-	program.attachShader(fragmentShader);
-	program.compile();
-
-	program.bind();
+	_triangleProgram.bind();
 	glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, nullptr);
-	program.unbind();
+	_triangleProgram.unbind();
 }
 
 Renderer* Renderer::_instance = nullptr;
