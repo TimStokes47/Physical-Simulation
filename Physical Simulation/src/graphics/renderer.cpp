@@ -3,6 +3,8 @@
 #include <GL/glew.h>
 #include <string>
 
+#include "shader.h"
+
 void Renderer::initialise() {
 	glewInit();
 }
@@ -43,7 +45,7 @@ void Renderer::renderTriangle()
 	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
 
 
-	const char* vertexShaderSource = "#version 330 core\n"
+	std::string vertexShaderSource = "#version 330 core\n"
 		"layout (location = 0) in vec3 aPos;\n"
 		"layout (location = 1) in vec3 aColor;\n"
 		"out vec3 color;\n"
@@ -53,7 +55,7 @@ void Renderer::renderTriangle()
 		"	color = aColor;\n"
 		"}\0";
 
-	const char* fragmentShaderSource = "#version 330 core\n"
+	std::string fragmentShaderSource = "#version 330 core\n"
 		"in vec3 color;\n"
 		"out vec4 FragColor;\n"
 		"void main()\n"
@@ -61,21 +63,15 @@ void Renderer::renderTriangle()
 		"FragColor = vec4(color, 1.0f);\n"
 		"}\0";
 	
-	unsigned int vertexShader;
-	vertexShader = glCreateShader(GL_VERTEX_SHADER);
-	glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
-	glCompileShader(vertexShader);
+	Shader vertexShader(vertexShaderSource, GL_VERTEX_SHADER);
+	Shader fragmentShader(fragmentShaderSource, GL_FRAGMENT_SHADER);
 
-	unsigned int fragmentShader;
-	fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-	glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
-	glCompileShader(fragmentShader);
+	ShaderProgram program;
+	program.attachShader(vertexShader);
+	program.attachShader(fragmentShader);
+	program.compile();
 
-	unsigned int shaderProgram = glCreateProgram();
-	glAttachShader(shaderProgram, vertexShader);
-	glAttachShader(shaderProgram, fragmentShader);
-	glLinkProgram(shaderProgram);
-	glUseProgram(shaderProgram);
-
+	program.bind();
 	glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, nullptr);
+	program.unbind();
 }
