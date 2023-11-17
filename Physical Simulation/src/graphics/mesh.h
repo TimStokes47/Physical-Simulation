@@ -10,4 +10,12 @@ struct Mesh {
 
 Mesh createTriangleMesh();
 
+struct RenderData {
+	unsigned int vertexArray;
+	unsigned int indexCount;
+};
+
+unsigned int createVertexArray(const Mesh& mesh);
+RenderData createRenderData(const Mesh& mesh);
+
 #endif
