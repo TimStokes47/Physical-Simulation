@@ -4,6 +4,7 @@
 #include <string>
 
 #include "shader.h"
+#include "mesh.h"
 
 void Renderer::initialise() {
 	glewInit();
@@ -34,33 +35,22 @@ void Renderer::renderTriangle()
 {
 	unsigned int vertexBuffer, elementBuffer, vertexArray;
 
-	float vertexData[] = {
-		0.0f, 0.5f, 0.0f, 1.0f, 0.0f, 0.0f,
-		-0.4f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f,
-		0.4f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f
-	};
-
-	unsigned int indexData[] = {
-		0, 1, 2
-	};
+	Mesh triangleMesh = createTriangleMesh();
 
 	glGenVertexArrays(1, &vertexArray);
 	glBindVertexArray(vertexArray);
 
 	glGenBuffers(1, &vertexBuffer);
 	glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, triangleMesh.vertexData.size() * sizeof(float), triangleMesh.vertexData.data(), GL_STATIC_DRAW);
 
 	glGenBuffers(1, &elementBuffer);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementBuffer);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indexData), indexData, GL_STATIC_DRAW);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, triangleMesh.indexData.size() * sizeof(float), triangleMesh.indexData.data(), GL_STATIC_DRAW);
 
 	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), nullptr);
-	glEnableVertexAttribArray(1);
-	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr);
 	
-
 	_triangleProgram.bind();
 	glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, nullptr);
 	_triangleProgram.unbind();
