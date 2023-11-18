@@ -29,8 +29,6 @@ Renderer::Renderer()
 	_standardProgram.attachShader(fragmentShader);
 	_standardProgram.compile();
 
-	_projectionMatrix = Mat4::perspectiveProjection(96.0f / 54.0f, 0.6f, 0.1f, 100.0f);
-
 	_planeRenderData = createRenderData(loadMeshFromFile("../../../../Physical Simulation/res/meshes/plane.obj"));
 	_cubeRenderData = createRenderData(loadMeshFromFile("../../../../Physical Simulation/res/meshes/cube.obj"));
 	_sphereRenderData = createRenderData(loadMeshFromFile("../../../../Physical Simulation/res/meshes/sphere.obj"));
@@ -45,7 +43,8 @@ void Renderer::clearScreen()
 void Renderer::renderPlane()
 {
 	_standardProgram.bind();
-	_standardProgram.setUniform("u_projection", _projectionMatrix);
+	_standardProgram.setUniform("u_projection", _camera.getPrespectiveProjectionMatrix());
+	_standardProgram.setUniform("u_view", _camera.getViewMatrix());
 	_standardProgram.setUniform("u_model", Mat4::translation({ 0.0f, 1.0f, -10.0f }));
 	glBindVertexArray(_planeRenderData.vertexArray);
 	glDrawElements(GL_TRIANGLES, _planeRenderData.indexCount, GL_UNSIGNED_INT, nullptr);
@@ -55,7 +54,8 @@ void Renderer::renderPlane()
 void Renderer::renderCube()
 {
 	_standardProgram.bind();
-	_standardProgram.setUniform("u_projection", _projectionMatrix);
+	_standardProgram.setUniform("u_projection", _camera.getPrespectiveProjectionMatrix());
+	_standardProgram.setUniform("u_view", _camera.getViewMatrix());
 	_standardProgram.setUniform("u_model", Mat4::translation({ 0.0f, 1.0f, -10.0f }));
 	glBindVertexArray(_cubeRenderData.vertexArray);
 	glDrawElements(GL_TRIANGLES, _cubeRenderData.indexCount, GL_UNSIGNED_INT, nullptr);
@@ -65,7 +65,8 @@ void Renderer::renderCube()
 void Renderer::renderSphere()
 {
 	_standardProgram.bind();
-	_standardProgram.setUniform("u_projection", _projectionMatrix);
+	_standardProgram.setUniform("u_projection", _camera.getPrespectiveProjectionMatrix());
+	_standardProgram.setUniform("u_view", _camera.getViewMatrix());
 	_standardProgram.setUniform("u_model", Mat4::translation({ 0.0f, 1.0f, -10.0f }));
 	glBindVertexArray(_sphereRenderData.vertexArray);
 	glDrawElements(GL_TRIANGLES, _sphereRenderData.indexCount, GL_UNSIGNED_INT, nullptr);

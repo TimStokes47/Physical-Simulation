@@ -11,6 +11,14 @@ TEST(Vector3, ExpectedConstruction) {
 	EXPECT_FLOAT_EQ(expectedVector.z(), 975.0f);
 }
 
+TEST(Vector3, DefaultConstructor) {
+	Vec3 defaultVector;
+
+	EXPECT_FLOAT_EQ(defaultVector.x(), 0.0f);
+	EXPECT_FLOAT_EQ(defaultVector.y(), 0.0f);
+	EXPECT_FLOAT_EQ(defaultVector.z(), 0.0f);
+}
+
 TEST(Mat4, DefaultConstruction) {
 	Mat4 identity;
 	

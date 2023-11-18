@@ -3,7 +3,7 @@
 
 #include "shader.h"
 #include "mesh.h"
-#include "../maths/mat4.h"
+#include "camera.h"
 
 class Renderer {
 public:
@@ -25,7 +25,7 @@ private:
 	RenderData _cubeRenderData;
 	RenderData _planeRenderData;
 
-	Mat4 _projectionMatrix;
+	Camera _camera;
 };
 
 #endif
