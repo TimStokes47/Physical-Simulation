@@ -59,6 +59,15 @@ Shader::Shader(const std::string& shaderSrcFilepath, unsigned int shaderType)
 	const char* shaderSrcCStr = shaderSrc.c_str();
 	glShaderSource(_handle, 1, &shaderSrcCStr, NULL);
 	glCompileShader(_handle);
+
+	int success;
+	char infoLog[512];
+	glGetShaderiv(_handle, GL_COMPILE_STATUS, &success);
+	if (!success)
+	{
+		glGetShaderInfoLog(_handle, 512, NULL, infoLog);
+		std::cout << "ERROR::SHADER::" << (shaderType == GL_VERTEX_SHADER ? "VERTEX" : "FRAGMENT") << "::COMPILATION_FAILED\n" << infoLog << std::endl;
+	};
 }
 
 Shader::~Shader()
