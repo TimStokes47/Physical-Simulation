@@ -34,11 +34,23 @@ float& Vec3::operator[](int index) {
 	return _data[index];
 }
 
+float dot(const Vec3& lhs, const Vec3& rhs) {
+	return lhs._data[0] * rhs._data[0] + lhs._data[1] * rhs._data[1] + lhs._data[2] * rhs._data[2];
+}
+
 Vec3 operator+(const Vec3& lhs, const Vec3& rhs) {
 	Vec3 result;
 	result._data[0] = lhs._data[0] + rhs._data[0];
 	result._data[1] = lhs._data[1] + rhs._data[1];
 	result._data[2] = lhs._data[2] + rhs._data[2];
+	return result;
+}
+
+Vec3 operator-(const Vec3& lhs, const Vec3& rhs) {
+	Vec3 result;
+	result._data[0] = lhs._data[0] - rhs._data[0];
+	result._data[1] = lhs._data[1] - rhs._data[1];
+	result._data[2] = lhs._data[2] - rhs._data[2];
 	return result;
 }
 

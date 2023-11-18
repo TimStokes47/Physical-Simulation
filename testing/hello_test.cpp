@@ -19,6 +19,13 @@ TEST(Vector3, DefaultConstructor) {
 	EXPECT_FLOAT_EQ(defaultVector.z(), 0.0f);
 }
 
+TEST(Vector3, DotProduct) {
+	Vec3 lhs(2.5f, 3.0f, 4.0f);
+	Vec3 rhs(1.5f, 0.0f, 1.0f);
+	float result = dot(lhs, rhs);
+	EXPECT_FLOAT_EQ(result, 7.75f);
+}
+
 TEST(Vector3, Addition) {
 	Vec3 lhs(1.5f, 3.2f, 9.1f);
 	Vec3 rhs(9.3f, -4.2f, 4.2f);
@@ -27,6 +34,16 @@ TEST(Vector3, Addition) {
 	EXPECT_FLOAT_EQ(result.x(), 10.8f);
 	EXPECT_FLOAT_EQ(result.y(), -1.0f);
 	EXPECT_FLOAT_EQ(result.z(), 13.3f);
+}
+
+TEST(Vector3, Subtraction) {
+	Vec3 lhs(4.2f, 8.4f, 1.2f);
+	Vec3 rhs(-9.3f, 4.2f, 4.2f);
+	Vec3 result = lhs - rhs;
+
+	EXPECT_FLOAT_EQ(result.x(), 13.5f);
+	EXPECT_FLOAT_EQ(result.y(), 4.2f);
+	EXPECT_FLOAT_EQ(result.z(), -3.0f);
 }
 
 TEST(Mat4, DefaultConstruction) {
