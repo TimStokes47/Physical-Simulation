@@ -3,6 +3,7 @@
 
 #include "shader.h"
 #include "mesh.h"
+#include "../maths/mat4.h"
 
 class Renderer {
 public:
@@ -19,6 +20,7 @@ private:
 
 	ShaderProgram _triangleProgram;
 	RenderData _triangleRenderData;
+	Mat4 _projectionMatrix;
 };
 
 #endif

@@ -1,8 +1,11 @@
 #include "shader.h"
+#include "shader.h"
 #include <GL/glew.h>
 #include <fstream>
 #include <sstream>
 #include <iostream>
+
+#include "../maths/mat4.h"
 
 ShaderProgram::ShaderProgram()
 {
@@ -32,6 +35,11 @@ void ShaderProgram::bind()
 void ShaderProgram::unbind()
 {
 	glUseProgram(0);
+}
+
+void ShaderProgram::setUniform(const std::string& uniformName, const Mat4& matrix)
+{
+	glUniformMatrix4fv(glGetUniformLocation(_handle, uniformName.c_str()), 1, GL_FALSE, &matrix[0][0]);
 }
 
 Shader::Shader(const std::string& shaderSrcFilepath, unsigned int shaderType)

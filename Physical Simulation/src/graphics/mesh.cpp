@@ -1,12 +1,13 @@
 #include "mesh.h"
 #include <GL/glew.h>
+#include <cmath>
 
 Mesh createTriangleMesh()
 {
 	Mesh triangleMesh;
-	triangleMesh.vertexData.push_back(0.0f); triangleMesh.vertexData.push_back(0.5f); triangleMesh.vertexData.push_back(0.0f);
-	triangleMesh.vertexData.push_back(-0.4f); triangleMesh.vertexData.push_back(-0.5f); triangleMesh.vertexData.push_back(0.0f);
-	triangleMesh.vertexData.push_back(0.4f); triangleMesh.vertexData.push_back(-0.5f); triangleMesh.vertexData.push_back(0.0f);
+	triangleMesh.vertexData.push_back(0.0f); triangleMesh.vertexData.push_back(std::sqrtf(3) / 4.0f); triangleMesh.vertexData.push_back(0.0f);
+	triangleMesh.vertexData.push_back(-0.5f); triangleMesh.vertexData.push_back(-std::sqrtf(3) / 4.0f); triangleMesh.vertexData.push_back(0.0f);
+	triangleMesh.vertexData.push_back(0.5f); triangleMesh.vertexData.push_back(-std::sqrtf(3) / 4.0f); triangleMesh.vertexData.push_back(0.0f);
 
 	triangleMesh.indexData.push_back(0);
 	triangleMesh.indexData.push_back(1);

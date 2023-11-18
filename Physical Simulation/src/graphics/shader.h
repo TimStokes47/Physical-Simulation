@@ -13,6 +13,8 @@ private:
 	unsigned int _handle;
 };
 
+class Mat4;
+
 class ShaderProgram {
 public:
 	ShaderProgram();
@@ -22,6 +24,8 @@ public:
 	void compile();
 	void bind();
 	void unbind();
+
+	void setUniform(const std::string& uniformName, const Mat4& matrix);
 
 private:
 	unsigned int _handle;
