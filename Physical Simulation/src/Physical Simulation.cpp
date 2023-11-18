@@ -15,7 +15,7 @@ int main()
 		input.pollEvents();
 
 		Renderer::getInstance()->clearScreen();
-		Renderer::getInstance()->renderTriangle();
+		Renderer::getInstance()->renderPlane();
 
 		if (input.isKeyPressed(GLFW_KEY_A)) {
 			std::cout << "A\n";

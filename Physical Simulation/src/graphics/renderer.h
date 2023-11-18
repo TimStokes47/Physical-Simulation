@@ -14,13 +14,16 @@ public:
 	void clearScreen();
 
 	void renderTriangle();
+	void renderPlane();
 
 private:
 	static Renderer* _instance;
 
 	ShaderProgram _triangleProgram;
 	RenderData _triangleRenderData;
+
 	Mat4 _projectionMatrix;
+	RenderData _planeRenderData;
 };
 
 #endif

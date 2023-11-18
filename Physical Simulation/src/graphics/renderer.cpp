@@ -1,4 +1,5 @@
 #include "renderer.h"
+#include "renderer.h"
 
 #include <GL/glew.h>
 #include <string>
@@ -28,6 +29,9 @@ Renderer::Renderer()
 
 	_triangleRenderData = createRenderData(createTriangleMesh());
 	_projectionMatrix = Mat4::perspectiveProjection(96.0f / 54.0f, 0.6f, 0.1f, 100.0f);
+
+	_planeRenderData = createRenderData(loadMeshFromFile("../../../../Physical Simulation/res/meshes/cube.obj"));
+
 }
 
 void Renderer::clearScreen()
@@ -42,6 +46,14 @@ void Renderer::renderTriangle()
 	_triangleProgram.setUniform("u_model", Mat4::translation({0.0f, 0.0f, -10.0f}));
 	glBindVertexArray(_triangleRenderData.vertexArray);
 	glDrawElements(GL_TRIANGLES, _triangleRenderData.indexCount, GL_UNSIGNED_INT, nullptr);
+	_triangleProgram.unbind();
+}
+
+void Renderer::renderPlane()
+{
+	_triangleProgram.bind();
+	glBindVertexArray(_planeRenderData.vertexArray);
+	glDrawElements(GL_TRIANGLES, _planeRenderData.indexCount, GL_UNSIGNED_INT, nullptr);
 	_triangleProgram.unbind();
 }
 
