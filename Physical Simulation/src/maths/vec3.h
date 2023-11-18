@@ -1,6 +1,8 @@
 #ifndef VEC3_H
 #define VEC3_H
 
+#include <array>
+
 class Vec3 {
 public:
 	Vec3(float x, float y, float z);
@@ -11,7 +13,7 @@ public:
 
 private:
 	static const int DIMENSIONS = 3;
-	float _data[DIMENSIONS];
+	std::array<float, DIMENSIONS> _data;
 };
 
 #endif

@@ -1,14 +1,20 @@
 #include "mesh.h"
 #include <GL/glew.h>
+
+#include <cmath>
+
 #include <fstream>
 #include <sstream>
+
 
 Mesh createTriangleMesh()
 {
 	Mesh triangleMesh;
-	triangleMesh.positionData.push_back(0.0f); triangleMesh.positionData.push_back(0.5f); triangleMesh.positionData.push_back(0.0f);
-	triangleMesh.positionData.push_back(-0.4f); triangleMesh.positionData.push_back(-0.5f); triangleMesh.positionData.push_back(0.0f);
-	triangleMesh.positionData.push_back(0.4f); triangleMesh.positionData.push_back(-0.5f); triangleMesh.positionData.push_back(0.0f);
+
+	triangleMesh.positionData.push_back(0.0f); triangleMesh.positionData.push_back(std::sqrtf(3) / 4.0f); triangleMesh.positionData.push_back(0.0f);
+	triangleMesh.positionData.push_back(-0.5f); triangleMesh.positionData.push_back(-std::sqrtf(3) / 4.0f); triangleMesh.positionData.push_back(0.0f);
+	triangleMesh.positionData.push_back(0.5f); triangleMesh.positionData.push_back(-std::sqrtf(3) / 4.0f); triangleMesh.positionData.push_back(0.0f);
+
 
 	triangleMesh.indexData.push_back(0);
 	triangleMesh.indexData.push_back(1);

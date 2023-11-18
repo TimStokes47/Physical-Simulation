@@ -3,7 +3,7 @@
 #
 
 # Add source to this project's executable.
-add_library (PhysicalSimulation STATIC "src/maths/vec3" "src/graphics/renderer.cpp" "src/graphics/window.cpp" "src/core/input.cpp" "src/graphics/shader.cpp" "src/graphics/mesh.cpp")
+add_library (PhysicalSimulation STATIC "src/maths/vec3" "src/graphics/renderer.cpp" "src/graphics/window.cpp" "src/core/input.cpp" "src/graphics/shader.cpp" "src/graphics/mesh.cpp" "src/maths/mat4.cpp")
 
 add_executable (Sandbox "src/Physical Simulation.cpp")
 target_link_libraries(Sandbox PhysicalSimulation)
