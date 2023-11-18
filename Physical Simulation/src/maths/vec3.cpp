@@ -3,6 +3,11 @@
 
 // Constructors
 
+Vec3::Vec3()
+	: _data{ 0.0f, 0.0f, 0.0f }
+{
+}
+
 Vec3::Vec3(float x, float y, float z) 
 	: _data{ x, y, z }
 {
@@ -23,6 +28,10 @@ const float Vec3::y() const
 const float Vec3::z() const
 {
 	return _data[2];
+}
+
+float& Vec3::operator[](int index) {
+	return _data[index];
 }
 
 const int Vec3::DIMENSIONS;

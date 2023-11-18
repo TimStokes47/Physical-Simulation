@@ -10,6 +10,7 @@
 
 void Renderer::initialise() {
 	glewInit();
+	glEnable(GL_DEPTH_TEST);
 	_instance = new Renderer;
 }
 
@@ -27,16 +28,16 @@ Renderer::Renderer()
 	_triangleProgram.attachShader(fragmentShader);
 	_triangleProgram.compile();
 
-	_triangleRenderData = createRenderData(createTriangleMesh());
+	//_triangleRenderData = createRenderData(createTriangleMesh());
 	_projectionMatrix = Mat4::perspectiveProjection(96.0f / 54.0f, 0.6f, 0.1f, 100.0f);
 
-	_planeRenderData = createRenderData(loadMeshFromFile("../../../../Physical Simulation/res/meshes/cube.obj"));
+	_planeRenderData = createRenderData(loadMeshFromFile("../../../../Physical Simulation/res/meshes/sphere.obj"));
 
 }
 
 void Renderer::clearScreen()
 {
-	glClear(GL_COLOR_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
 void Renderer::renderTriangle()
@@ -52,6 +53,8 @@ void Renderer::renderTriangle()
 void Renderer::renderPlane()
 {
 	_triangleProgram.bind();
+	_triangleProgram.setUniform("u_projection", _projectionMatrix);
+	_triangleProgram.setUniform("u_model", Mat4::translation({ 0.0f, 1.0f, -10.0f }));
 	glBindVertexArray(_planeRenderData.vertexArray);
 	glDrawElements(GL_TRIANGLES, _planeRenderData.indexCount, GL_UNSIGNED_INT, nullptr);
 	_triangleProgram.unbind();

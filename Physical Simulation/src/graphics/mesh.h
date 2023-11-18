@@ -4,10 +4,13 @@
 #include <vector>
 #include <string>
 
+#include "../maths/vec3.h"
+#include "../maths/uvec3.h"
+
 struct Mesh {
-	std::vector<float> positionData;
-	std::vector<float> normalData;
-	std::vector<unsigned int> indexData;
+	std::vector<Vec3> positionData;
+	std::vector<Vec3> normalData;
+	std::vector<UVec3> indexData;
 };
 
 Mesh createTriangleMesh();
@@ -18,7 +21,7 @@ struct RenderData {
 	unsigned int indexCount;
 };
 
-unsigned int createVertexArray(const Mesh& mesh);
+unsigned int createVertexArray(const Mesh& mesh, unsigned int& indicesCount);
 RenderData createRenderData(const Mesh& mesh);
 
 #endif

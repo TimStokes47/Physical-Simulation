@@ -5,11 +5,14 @@
 
 class Vec3 {
 public:
+	Vec3();
 	Vec3(float x, float y, float z);
 
 	const float x() const;
 	const float y() const;
 	const float z() const;
+
+	float& operator[](int index);
 
 private:
 	static const int DIMENSIONS = 3;
