@@ -14,6 +14,8 @@ public:
 
 	float& operator[](int index);
 
+	friend Vec3 operator+(const Vec3& lhs, const Vec3& rhs);
+
 private:
 	static const int DIMENSIONS = 3;
 	std::array<float, DIMENSIONS> _data;
