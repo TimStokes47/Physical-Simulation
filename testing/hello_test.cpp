@@ -14,8 +14,10 @@ TEST(Vector3, ExpectedConstruction) {
 TEST(Mat4, DefaultConstruction) {
 	Mat4 identity;
 	
-	EXPECT_FLOAT_EQ(identity.getRow(0)[0], 1.0f);
-	EXPECT_FLOAT_EQ(identity.getRow(1)[1], 1.0f);
-	EXPECT_FLOAT_EQ(identity.getRow(2)[2], 1.0f);
-	EXPECT_FLOAT_EQ(identity.getRow(3)[3], 1.0f);
+	for (int i = 0; i < 4; i++) {
+		for (int j = 0; j < 4; j++) {
+			if (i == j) { EXPECT_FLOAT_EQ(identity.getRow(i)[j], 1.0f); }
+			else { EXPECT_FLOAT_EQ(identity.getRow(i)[j], 0.0f); }
+		}
+	}
 }
