@@ -3,6 +3,7 @@
 #include "renderer.h"
 #include "renderer.h"
 #include "renderer.h"
+#include "renderer.h"
 
 #include <GL/glew.h>
 #include <string>
@@ -10,6 +11,7 @@
 #include "shader.h"
 #include "mesh.h"
 #include "../maths/vec3.h"
+#include "../physics/particle.h"
 
 void Renderer::initialise() {
 	glewInit();
@@ -84,6 +86,11 @@ void Renderer::renderCube(const Mat4& model)
 void Renderer::renderSphere(const Mat4& model)
 {
 	render(_sphereRenderData, model);
+}
+
+void Renderer::renderParticle(const Particle& particle)
+{
+	renderSphere(Mat4::translation(particle.position));
 }
 
 Renderer* Renderer::_instance = nullptr;
