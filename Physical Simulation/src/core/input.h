@@ -5,14 +5,14 @@ class Window;
 
 class Input {
 public:
-	Input(const Window& window);
-	void pollEvents() const;
+	static void initialise(const Window& window);
+	static void pollEvents();
 
-	bool isKeyPressed(int keycode) const;
-	bool isMouseButtonPressed(int buttonCode) const;
+	static bool isKeyPressed(int keycode);
+	static bool isMouseButtonPressed(int buttonCode);
 
 private:
-	void* _windowHandle;
+	static void* _windowHandle;
 };
 
 #define GLFW_MOUSE_BUTTON_1   0

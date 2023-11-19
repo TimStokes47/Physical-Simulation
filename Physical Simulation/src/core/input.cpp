@@ -2,22 +2,24 @@
 #include "../graphics/window.h"
 #include <GLFW/glfw3.h>
 
-Input::Input(const Window& window)
-	: _windowHandle(window._handle)
+void Input::initialise(const Window& window)
 {
+	_windowHandle = window._handle;
 }
 
-void Input::pollEvents() const
+void Input::pollEvents()
 {
 	glfwPollEvents();
 }
 
-bool Input::isKeyPressed(int keycode) const
+bool Input::isKeyPressed(int keycode)
 {
 	return (glfwGetKey(static_cast<GLFWwindow*>(_windowHandle), keycode) == GLFW_PRESS);
 }
 
-bool Input::isMouseButtonPressed(int buttonCode) const
+bool Input::isMouseButtonPressed(int buttonCode)
 {
 	return (glfwGetMouseButton(static_cast<GLFWwindow*>(_windowHandle), buttonCode) == GLFW_PRESS);
 }
+
+void* Input::_windowHandle = nullptr;

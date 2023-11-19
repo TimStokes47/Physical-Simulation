@@ -3,6 +3,7 @@
 
 #include "shader.h"
 #include "mesh.h"
+#include "camera.h"
 
 class Renderer {
 public:
@@ -12,13 +13,22 @@ public:
 	Renderer();
 	void clearScreen();
 
-	void renderTriangle();
+	Camera& getCamera();
+
+	void render(const RenderData& renderData, const Mat4& model);
+	void renderPlane(const Mat4& model);
+	void renderCube(const Mat4& model);
+	void renderSphere(const Mat4& model);
 
 private:
 	static Renderer* _instance;
 
-	ShaderProgram _triangleProgram;
-	RenderData _triangleRenderData;
+	ShaderProgram _standardProgram;
+	RenderData _sphereRenderData;
+	RenderData _cubeRenderData;
+	RenderData _planeRenderData;
+
+	Camera _camera;
 };
 
 #endif
