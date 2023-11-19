@@ -3,7 +3,7 @@
 #
 
 # Add source to this project's executable.
-add_library (PhysicalSimulation STATIC "src/maths/vec3" "src/graphics/renderer.cpp" "src/graphics/window.cpp" "src/core/input.cpp" "src/graphics/shader.cpp" "src/graphics/mesh.cpp" "src/maths/mat4.cpp" "src/maths/uvec3.cpp" "src/graphics/camera.cpp" "src/physics/particle.cpp")
+add_library (PhysicalSimulation STATIC "src/maths/vec3" "src/graphics/renderer.cpp" "src/graphics/window.cpp" "src/core/input.cpp" "src/graphics/shader.cpp" "src/graphics/mesh.cpp" "src/maths/mat4.cpp" "src/maths/uvec3.cpp" "src/graphics/camera.cpp" "src/physics/particle.cpp" "vendor/imGui/imgui.cpp" "vendor/imGui/imgui_impl_opengl3.cpp" "vendor/imGui/imgui_impl_glfw.cpp" "vendor/imGui/imgui_stdlib.cpp" "vendor/imGui/imgui_demo.cpp" "vendor/imGui/imgui_draw.cpp" "vendor/imGui/imgui_widgets.cpp" "vendor/imGui/imgui_tables.cpp")
 
 add_executable (Sandbox "src/Physical Simulation.cpp")
 target_link_libraries(Sandbox PhysicalSimulation)
@@ -21,4 +21,6 @@ add_subdirectory("vendor/glew/build/cmake")
 target_link_libraries(PhysicalSimulation glfw glew_s)
 find_package(OpenGL REQUIRED)
 target_link_libraries(PhysicalSimulation OpenGL::GL)
-target_include_directories(PhysicalSimulation PRIVATE "vendor/glfw/include" "vendor/glew/include")
+target_include_directories(PhysicalSimulation PRIVATE "vendor/glfw/include" "vendor/glew/include" "vendor/imGui")
+
+target_include_directories(Sandbox PRIVATE "vendor/imGui")
