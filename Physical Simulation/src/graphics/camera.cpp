@@ -3,7 +3,7 @@
 
 
 Camera::Camera()
-	: _position(0.0f, 0.0f, 10.0f), _viewDirection(0.0f, 0.0f, -1.0f), _up(0.0f, 1.0f, 0.0f), _speed(3.0f)
+	: _position(0.0f, 0.0f, 10.0f), _viewDirection(0.0f, 0.0f, -1.0f), _up(0.0f, 1.0f, 0.0f), _speed(6.0f)
 {
 	_perspectiveProjectionMatrix = Mat4::perspectiveProjection(96.0f / 54.0f, 0.6f, 0.1f, 100.0f);
 	_viewMatrix = Mat4::lookAt(_position, _position + _viewDirection, _up);
@@ -25,7 +25,12 @@ void Camera::update(float dt) {
 	if (Input::isKeyPressed(GLFW_KEY_S)) {
 		velocity = velocity - _viewDirection;
 	}
-
+	if (Input::isKeyPressed(GLFW_KEY_R)) {
+		velocity = velocity + _up;
+	}
+	if (Input::isKeyPressed(GLFW_KEY_F)) {
+		velocity = velocity - _up;
+	}
 	_position = _position + normalise(velocity) * _speed * dt;
 	_viewMatrix = Mat4::lookAt(_position, _position + _viewDirection, _up);
 }

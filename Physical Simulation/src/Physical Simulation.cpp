@@ -5,6 +5,7 @@
 
 #include <iostream>
 #include <chrono>
+#include <thread>
 
 int main()
 {
@@ -12,11 +13,20 @@ int main()
 	Input::initialise(window);
 	Renderer::initialise();
 
+	int fps = 240;
+	float totalTime = 0.0f;
+	auto timeBetweenFrames = std::chrono::microseconds(std::chrono::seconds(1)) / fps;
+	auto targetTimepoint = std::chrono::steady_clock::now();
+	float dt = (float)timeBetweenFrames.count() / std::chrono::microseconds(std::chrono::seconds(1)).count();
+
 	while (!window.isClosed()) {
+		targetTimepoint += timeBetweenFrames;
+		std::this_thread::sleep_until(targetTimepoint);
+
 		window.swapBuffers();
 		Input::pollEvents();
 
-		Renderer::getInstance()->getCamera().update(0.0001f);
+		Renderer::getInstance()->getCamera().update(dt);
 
 		Renderer::getInstance()->clearScreen();
 		Renderer::getInstance()->renderSphere();
