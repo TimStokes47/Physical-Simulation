@@ -13,6 +13,8 @@ public:
 	Renderer();
 	void clearScreen();
 
+	Camera& getCamera();
+
 	void renderPlane();
 	void renderCube();
 	void renderSphere();

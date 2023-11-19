@@ -10,6 +10,8 @@ public:
 	Mat4 const& getPrespectiveProjectionMatrix() const;
 	Mat4 const& getViewMatrix() const;
 
+	void update(float dt);
+
 private:
 	Mat4 _perspectiveProjectionMatrix;
 	Mat4 _viewMatrix;
@@ -17,6 +19,8 @@ private:
 	Vec3 _position;
 	Vec3 _viewDirection;
 	Vec3 _up;
+
+	float _speed;
 };
 
 #endif

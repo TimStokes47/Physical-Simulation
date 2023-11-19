@@ -1,6 +1,7 @@
 #include "renderer.h"
 #include "renderer.h"
 #include "renderer.h"
+#include "renderer.h"
 
 #include <GL/glew.h>
 #include <string>
@@ -38,6 +39,11 @@ Renderer::Renderer()
 void Renderer::clearScreen()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+}
+
+Camera& Renderer::getCamera()
+{
+	return _camera;
 }
 
 void Renderer::renderPlane()

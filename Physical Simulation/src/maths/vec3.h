@@ -22,5 +22,6 @@ Vec3 cross(const Vec3& lhs, const Vec3& rhs);
 Vec3 operator+(const Vec3& lhs, const Vec3& rhs);
 Vec3 operator-(const Vec3& lhs, const Vec3& rhs);
 Vec3 operator/(const Vec3& lhs, float rhs);
+Vec3 operator*(const Vec3& lhs, float rhs);
 
 #endif

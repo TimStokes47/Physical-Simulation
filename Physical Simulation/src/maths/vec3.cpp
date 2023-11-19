@@ -22,7 +22,13 @@ float magnitudeSquared(const Vec3& vector)
 
 Vec3 normalise(const Vec3& vector)
 {
-	return vector / std::sqrtf(magnitudeSquared(vector));
+	float squareMagnitude = magnitudeSquared(vector);
+	if (squareMagnitude != 0.0f) {
+		return vector / std::sqrtf(squareMagnitude);
+	}
+	else {
+		return vector;
+	}
 }
 
 float dot(const Vec3& lhs, const Vec3& rhs) {
@@ -60,5 +66,14 @@ Vec3 operator/(const Vec3& lhs, float rhs)
 	result.x = lhs.x / rhs;
 	result.y = lhs.y / rhs;
 	result.z = lhs.z / rhs;
+	return result;
+}
+
+Vec3 operator*(const Vec3& lhs, float rhs)
+{
+	Vec3 result;
+	result.x = lhs.x * rhs;
+	result.y = lhs.y * rhs;
+	result.z = lhs.z * rhs;
 	return result;
 }

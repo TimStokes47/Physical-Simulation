@@ -1,28 +1,25 @@
 ﻿#include "graphics/renderer.h"
 #include "graphics/window.h"
 #include "core/input.h"
+#include "graphics/camera.h"
 
 #include <iostream>
+#include <chrono>
 
 int main()
 {
 	Window window(960, 540, "Physical Simulation");
-	Input input(window);
+	Input::initialise(window);
 	Renderer::initialise();
 
 	while (!window.isClosed()) {
 		window.swapBuffers();
-		input.pollEvents();
+		Input::pollEvents();
+
+		Renderer::getInstance()->getCamera().update(0.0001f);
 
 		Renderer::getInstance()->clearScreen();
 		Renderer::getInstance()->renderSphere();
-
-		if (input.isKeyPressed(GLFW_KEY_A)) {
-			std::cout << "A\n";
-		}
-		if (input.isMouseButtonPressed(GLFW_MOUSE_BUTTON_RIGHT)) {
-			std::cout << "Right\n";
-		}
 	}
 	return 0;
 }
