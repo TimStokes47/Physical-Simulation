@@ -29,7 +29,7 @@ int main()
 		Renderer::getInstance()->getCamera().update(dt);
 
 		Renderer::getInstance()->clearScreen();
-		Renderer::getInstance()->renderSphere();
+		Renderer::getInstance()->renderSphere(Mat4::translation({1.0f, 1.0f, 0.0f}));
 	}
 	return 0;
 }

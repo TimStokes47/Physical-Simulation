@@ -15,9 +15,10 @@ public:
 
 	Camera& getCamera();
 
-	void renderPlane();
-	void renderCube();
-	void renderSphere();
+	void render(const RenderData& renderData, const Mat4& model);
+	void renderPlane(const Mat4& model);
+	void renderCube(const Mat4& model);
+	void renderSphere(const Mat4& model);
 
 private:
 	static Renderer* _instance;

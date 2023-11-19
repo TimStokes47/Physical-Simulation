@@ -2,6 +2,7 @@
 #include "renderer.h"
 #include "renderer.h"
 #include "renderer.h"
+#include "renderer.h"
 
 #include <GL/glew.h>
 #include <string>
@@ -46,37 +47,43 @@ Camera& Renderer::getCamera()
 	return _camera;
 }
 
-void Renderer::renderPlane()
+void Renderer::render(const RenderData& renderData, const Mat4& model)
 {
 	_standardProgram.bind();
 	_standardProgram.setUniform("u_projection", _camera.getPrespectiveProjectionMatrix());
 	_standardProgram.setUniform("u_view", _camera.getViewMatrix());
-	_standardProgram.setUniform("u_model", Mat4::translation({ 0.0f, 1.0f, -0.0f }));
+	_standardProgram.setUniform("u_model", model);
+	glBindVertexArray(renderData.vertexArray);
+	glDrawElements(GL_TRIANGLES, renderData.indexCount, GL_UNSIGNED_INT, nullptr);
+	_standardProgram.unbind();
+	glBindVertexArray(0);
+}
+
+void Renderer::renderPlane(const Mat4& model)
+{
+	_standardProgram.bind();
+	_standardProgram.setUniform("u_projection", _camera.getPrespectiveProjectionMatrix());
+	_standardProgram.setUniform("u_view", _camera.getViewMatrix());
+	_standardProgram.setUniform("u_model", model);
 	glBindVertexArray(_planeRenderData.vertexArray);
 	glDrawElements(GL_TRIANGLES, _planeRenderData.indexCount, GL_UNSIGNED_INT, nullptr);
 	_standardProgram.unbind();
 }
 
-void Renderer::renderCube()
+void Renderer::renderCube(const Mat4& model)
 {
 	_standardProgram.bind();
 	_standardProgram.setUniform("u_projection", _camera.getPrespectiveProjectionMatrix());
 	_standardProgram.setUniform("u_view", _camera.getViewMatrix());
-	_standardProgram.setUniform("u_model", Mat4::translation({ 0.0f, 1.0f, -0.0f }));
+	_standardProgram.setUniform("u_model", model);
 	glBindVertexArray(_cubeRenderData.vertexArray);
 	glDrawElements(GL_TRIANGLES, _cubeRenderData.indexCount, GL_UNSIGNED_INT, nullptr);
 	_standardProgram.unbind();
 }
 
-void Renderer::renderSphere()
+void Renderer::renderSphere(const Mat4& model)
 {
-	_standardProgram.bind();
-	_standardProgram.setUniform("u_projection", _camera.getPrespectiveProjectionMatrix());
-	_standardProgram.setUniform("u_view", _camera.getViewMatrix());
-	_standardProgram.setUniform("u_model", Mat4::translation({ 4.0f, 1.0f, -0.0f }));
-	glBindVertexArray(_sphereRenderData.vertexArray);
-	glDrawElements(GL_TRIANGLES, _sphereRenderData.indexCount, GL_UNSIGNED_INT, nullptr);
-	_standardProgram.unbind();
+	render(_sphereRenderData, model);
 }
 
 Renderer* Renderer::_instance = nullptr;
