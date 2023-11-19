@@ -6,17 +6,17 @@
 TEST(Vector3, ExpectedConstruction) {
 	Vec3 expectedVector(-1.4f, 0.0f, 975.0f);
 
-	EXPECT_FLOAT_EQ(expectedVector.x(), -1.4f);
-	EXPECT_FLOAT_EQ(expectedVector.y(), 0.0f);
-	EXPECT_FLOAT_EQ(expectedVector.z(), 975.0f);
+	EXPECT_FLOAT_EQ(expectedVector.x, -1.4f);
+	EXPECT_FLOAT_EQ(expectedVector.y, 0.0f);
+	EXPECT_FLOAT_EQ(expectedVector.z, 975.0f);
 }
 
 TEST(Vector3, DefaultConstructor) {
 	Vec3 defaultVector;
 
-	EXPECT_FLOAT_EQ(defaultVector.x(), 0.0f);
-	EXPECT_FLOAT_EQ(defaultVector.y(), 0.0f);
-	EXPECT_FLOAT_EQ(defaultVector.z(), 0.0f);
+	EXPECT_FLOAT_EQ(defaultVector.x, 0.0f);
+	EXPECT_FLOAT_EQ(defaultVector.y, 0.0f);
+	EXPECT_FLOAT_EQ(defaultVector.z, 0.0f);
 }
 
 TEST(Vector3, DotProduct) {
@@ -31,9 +31,9 @@ TEST(Vector3, CrossProduct) {
 	Vec3 rhs(0.5f, 0.0f, 3.0f);
 	Vec3 result = cross(lhs, rhs);
 
-	EXPECT_FLOAT_EQ(result.x(), 3.0f);
-	EXPECT_FLOAT_EQ(result.y(), -8.6f);
-	EXPECT_FLOAT_EQ(result.z(), -0.5f);
+	EXPECT_FLOAT_EQ(result.x, 3.0f);
+	EXPECT_FLOAT_EQ(result.y, -8.6f);
+	EXPECT_FLOAT_EQ(result.z, -0.5f);
 }
 
 TEST(Vector3, Addition) {
@@ -41,9 +41,9 @@ TEST(Vector3, Addition) {
 	Vec3 rhs(9.3f, -4.2f, 4.2f);
 	Vec3 result = lhs + rhs;
 
-	EXPECT_FLOAT_EQ(result.x(), 10.8f);
-	EXPECT_FLOAT_EQ(result.y(), -1.0f);
-	EXPECT_FLOAT_EQ(result.z(), 13.3f);
+	EXPECT_FLOAT_EQ(result.x, 10.8f);
+	EXPECT_FLOAT_EQ(result.y, -1.0f);
+	EXPECT_FLOAT_EQ(result.z, 13.3f);
 }
 
 TEST(Vector3, Subtraction) {
@@ -51,9 +51,9 @@ TEST(Vector3, Subtraction) {
 	Vec3 rhs(-9.3f, 4.2f, 4.2f);
 	Vec3 result = lhs - rhs;
 
-	EXPECT_FLOAT_EQ(result.x(), 13.5f);
-	EXPECT_FLOAT_EQ(result.y(), 4.2f);
-	EXPECT_FLOAT_EQ(result.z(), -3.0f);
+	EXPECT_FLOAT_EQ(result.x, 13.5f);
+	EXPECT_FLOAT_EQ(result.y, 4.2f);
+	EXPECT_FLOAT_EQ(result.z, -3.0f);
 }
 
 TEST(Mat4, DefaultConstruction) {

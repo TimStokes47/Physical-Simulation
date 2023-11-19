@@ -36,9 +36,9 @@ Mesh loadMeshFromFile(const std::string& filepath)
 		{
 			std::istringstream positionalData(line.substr(2));
 			Vec3 position;
-			positionalData >> position[0];
-			positionalData >> position[1];
-			positionalData >> position[2];
+			positionalData >> position.x;
+			positionalData >> position.y;
+			positionalData >> position.z;
 			mesh.positionData.push_back(position);
 		}
 
@@ -46,9 +46,9 @@ Mesh loadMeshFromFile(const std::string& filepath)
 		{
 			std::istringstream normalData(line.substr(3));
 			Vec3 normal;
-			normalData >> normal[0];
-			normalData >> normal[1];
-			normalData >> normal[2];
+			normalData >> normal.x;
+			normalData >> normal.y;
+			normalData >> normal.z;
 			mesh.normalData.push_back(normal);
 		}
 
@@ -103,12 +103,12 @@ unsigned int createVertexArray(const Mesh& mesh, unsigned int& indicesCount)
 			indices.push_back(index);
 			index++;
 
-			vertices.push_back(mesh.positionData[vertexData.first].x());
-			vertices.push_back(mesh.positionData[vertexData.first].y());
-			vertices.push_back(mesh.positionData[vertexData.first].z());
-			vertices.push_back(mesh.normalData[vertexData.second].x());
-			vertices.push_back(mesh.normalData[vertexData.second].y());
-			vertices.push_back(mesh.normalData[vertexData.second].z());
+			vertices.push_back(mesh.positionData[vertexData.first].x);
+			vertices.push_back(mesh.positionData[vertexData.first].y);
+			vertices.push_back(mesh.positionData[vertexData.first].z);
+			vertices.push_back(mesh.normalData[vertexData.second].x);
+			vertices.push_back(mesh.normalData[vertexData.second].y);
+			vertices.push_back(mesh.normalData[vertexData.second].z);
 			previousVertices.push_back(vertexData);
 		}
 	}

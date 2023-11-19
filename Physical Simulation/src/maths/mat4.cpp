@@ -45,9 +45,9 @@ Mat4 Mat4::perspectiveProjection(float aspectRatio, float fieldOfView, float nea
 
 Mat4 Mat4::translation(const Vec3& vector) {
 	Mat4 translationMatrix;
-	translationMatrix[3][0] = vector.x();
-	translationMatrix[3][1] = vector.y();
-	translationMatrix[3][2] = vector.z();
+	translationMatrix[3][0] = vector.x;
+	translationMatrix[3][1] = vector.y;
+	translationMatrix[3][2] = vector.z;
 	return translationMatrix;
 }
 
