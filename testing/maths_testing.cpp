@@ -26,6 +26,16 @@ TEST(Vector3, DotProduct) {
 	EXPECT_FLOAT_EQ(result, 7.75f);
 }
 
+TEST(Vector3, CrossProduct) {
+	Vec3 lhs(2.5f, 1.0f, -2.2f);
+	Vec3 rhs(0.5f, 0.0f, 3.0f);
+	Vec3 result = cross(lhs, rhs);
+
+	EXPECT_FLOAT_EQ(result.x(), 3.0f);
+	EXPECT_FLOAT_EQ(result.y(), -8.6f);
+	EXPECT_FLOAT_EQ(result.z(), -0.5f);
+}
+
 TEST(Vector3, Addition) {
 	Vec3 lhs(1.5f, 3.2f, 9.1f);
 	Vec3 rhs(9.3f, -4.2f, 4.2f);

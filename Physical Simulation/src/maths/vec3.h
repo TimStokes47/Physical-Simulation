@@ -15,6 +15,7 @@ public:
 	float& operator[](int index);
 
 	friend float dot(const Vec3& lhs, const Vec3& rhs);
+	friend Vec3 cross(const Vec3& lhs, const Vec3& rhs);
 
 	friend Vec3 operator+(const Vec3& lhs, const Vec3& rhs);
 	friend Vec3 operator-(const Vec3& lhs, const Vec3& rhs);
