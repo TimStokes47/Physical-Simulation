@@ -19,6 +19,12 @@ TEST(Vector3, DefaultConstructor) {
 	EXPECT_FLOAT_EQ(defaultVector.z, 0.0f);
 }
 
+TEST(Vector3, SquareMagnitude) {
+	Vec3 vector(2.5f, 5.0f, -1.0f);
+	float squareMagnitude = magnitudeSquared(vector);
+	EXPECT_FLOAT_EQ(squareMagnitude, 32.25f);
+}
+
 TEST(Vector3, DotProduct) {
 	Vec3 lhs(2.5f, 3.0f, 4.0f);
 	Vec3 rhs(1.5f, 0.0f, 1.0f);
@@ -54,6 +60,15 @@ TEST(Vector3, Subtraction) {
 	EXPECT_FLOAT_EQ(result.x, 13.5f);
 	EXPECT_FLOAT_EQ(result.y, 4.2f);
 	EXPECT_FLOAT_EQ(result.z, -3.0f);
+}
+
+TEST(Vector3, Division) {
+	Vec3 vector(6.0f, 9.0f, -3.15f);
+	Vec3 result = vector / 3.0f;
+
+	EXPECT_FLOAT_EQ(result.x, 2.0f);
+	EXPECT_FLOAT_EQ(result.y, 3.0f);
+	EXPECT_FLOAT_EQ(result.z, -1.05f);
 }
 
 TEST(Mat4, DefaultConstruction) {

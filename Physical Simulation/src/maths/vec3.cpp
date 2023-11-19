@@ -15,6 +15,11 @@ Vec3::Vec3(float x, float y, float z)
 
 // Vector Specific Functions
 
+float magnitudeSquared(const Vec3& vector)
+{
+	return vector.x * vector.x + vector.y * vector.y + vector.z * vector.z;
+}
+
 float dot(const Vec3& lhs, const Vec3& rhs) {
 	return lhs.x * rhs.x + lhs.y * rhs.y + lhs.z * rhs.z;
 }
@@ -41,5 +46,14 @@ Vec3 operator-(const Vec3& lhs, const Vec3& rhs) {
 	result.x = lhs.x - rhs.x;
 	result.y = lhs.y - rhs.y;
 	result.z = lhs.z - rhs.z;
+	return result;
+}
+
+Vec3 operator/(const Vec3& lhs, float rhs)
+{
+	Vec3 result;
+	result.x = lhs.x / rhs;
+	result.y = lhs.y / rhs;
+	result.z = lhs.z / rhs;
 	return result;
 }
