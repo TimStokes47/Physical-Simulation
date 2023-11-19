@@ -2,6 +2,7 @@
 #include "graphics/window.h"
 #include "core/input.h"
 #include "graphics/camera.h"
+#include "physics/particle.h"
 
 #include <iostream>
 #include <chrono>
@@ -19,6 +20,8 @@ int main()
 	auto targetTimepoint = std::chrono::steady_clock::now();
 	float dt = (float)timeBetweenFrames.count() / std::chrono::microseconds(std::chrono::seconds(1)).count();
 
+	Particle p;
+
 	while (!window.isClosed()) {
 		targetTimepoint += timeBetweenFrames;
 		std::this_thread::sleep_until(targetTimepoint);
@@ -29,7 +32,7 @@ int main()
 		Renderer::getInstance()->getCamera().update(dt);
 
 		Renderer::getInstance()->clearScreen();
-		Renderer::getInstance()->renderSphere(Mat4::translation({1.0f, 1.0f, 0.0f}));
+		Renderer::getInstance()->renderParticle(p);
 	}
 	return 0;
 }

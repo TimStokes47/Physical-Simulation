@@ -5,6 +5,8 @@
 #include "mesh.h"
 #include "camera.h"
 
+class Particle;
+
 class Renderer {
 public:
 	static void initialise();
@@ -19,6 +21,8 @@ public:
 	void renderPlane(const Mat4& model);
 	void renderCube(const Mat4& model);
 	void renderSphere(const Mat4& model);
+
+	void renderParticle(const Particle& particle);
 
 private:
 	static Renderer* _instance;
