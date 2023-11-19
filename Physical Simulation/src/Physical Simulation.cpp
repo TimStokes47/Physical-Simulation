@@ -30,6 +30,8 @@ int main()
 		Input::pollEvents();
 
 		Renderer::getInstance()->getCamera().update(dt);
+		p.applyForce({ 0.0f, -9.81f, 0.0f });
+		p.update(dt);
 
 		Renderer::getInstance()->clearScreen();
 		Renderer::getInstance()->renderParticle(p);

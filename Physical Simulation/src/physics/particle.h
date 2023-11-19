@@ -8,6 +8,10 @@ public:
 	Particle();
 	Vec3 position;
 	Vec3 velocity;
+	float inverseMass;
+
+	void applyForce(const Vec3& force);
+	void update(float dt);
 	
 private:
 	Vec3 _forceAccumulator;
