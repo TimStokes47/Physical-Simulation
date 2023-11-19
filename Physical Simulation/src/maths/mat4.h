@@ -16,6 +16,7 @@ public:
 	std::array<float, 4> const& operator[](int index) const;
 
 	static Mat4 perspectiveProjection(float aspectRatio, float fieldOfView, float nearPlane, float farPlane);
+	static Mat4 lookAt(const Vec3& origin, const Vec3& target, const Vec3& up);
 	static Mat4 translation(const Vec3& vector);
 
 private:

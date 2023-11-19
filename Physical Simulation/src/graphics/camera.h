@@ -2,6 +2,7 @@
 #define CAMERA_H
 
 #include "../maths/mat4.h"
+#include "../maths/vec3.h"
 
 class Camera {
 public:
@@ -12,6 +13,10 @@ public:
 private:
 	Mat4 _perspectiveProjectionMatrix;
 	Mat4 _viewMatrix;
+
+	Vec3 _position;
+	Vec3 _viewDirection;
+	Vec3 _up;
 };
 
 #endif
