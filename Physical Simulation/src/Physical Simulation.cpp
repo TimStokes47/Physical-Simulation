@@ -12,6 +12,7 @@
 #include <iostream>
 #include <chrono>
 #include <thread>
+#include <vector>
 
 int main()
 {
@@ -27,7 +28,7 @@ int main()
 
 	bool isRunning = false;
 
-	Particle p;
+	std::vector<Particle> particles;
 
 	while (!window.isClosed()) {
 		targetTimepoint += timeBetweenFrames;
@@ -39,12 +40,17 @@ int main()
 		Renderer::getInstance()->getCamera().update(dt);
 
 		if (isRunning) {
-			p.applyForce({ 0.0f, -9.81f, 0.0f });
-			p.update(dt);
+			for (Particle& p : particles) {
+				p.applyForce({ 0.0f, -9.81f, 0.0f });
+				p.update(dt);
+			}
 		}
 
 		Renderer::getInstance()->clearScreen();
-		Renderer::getInstance()->renderParticle(p);
+
+		for (Particle& p : particles) {
+			Renderer::getInstance()->renderParticle(p);
+		}
 
 		ImGui_ImplOpenGL3_NewFrame();
 		ImGui_ImplGlfw_NewFrame();
@@ -61,9 +67,16 @@ int main()
 				isRunning = true;
 			}
 		}
+		if (ImGui::Button("Create Particle")) {
+			particles.push_back(Particle());
+		}
 
-		ImGui::InputFloat3("Position", &p.position.x);
-		ImGui::InputFloat3("Velocity", &p.velocity.x);
+		for (Particle& p : particles) {
+			ImGui::DragFloat3((std::string("Position ") + std::to_string(p.id)).c_str(), &p.position.x);
+			ImGui::DragFloat3((std::string("Velocity ") + std::to_string(p.id)).c_str(), &p.velocity.x);
+			ImGui::Separator();
+		}
+		
 		ImGui::End();
 
 		ImGui::Render();

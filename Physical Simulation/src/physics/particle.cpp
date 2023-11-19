@@ -1,8 +1,9 @@
 #include "particle.h"
 
 Particle::Particle()
-	: position(), velocity(), _forceAccumulator(), inverseMass(1.0f)
+	: position(), velocity(), _forceAccumulator(), inverseMass(1.0f), id(_nextID)
 {
+	_nextID++;
 }
 
 void Particle::applyForce(const Vec3& force)
@@ -18,3 +19,5 @@ void Particle::update(float dt)
 
 	_forceAccumulator = Vec3();
 }
+
+int Particle::_nextID = 0;
