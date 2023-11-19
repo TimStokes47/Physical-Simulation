@@ -14,6 +14,7 @@ public:
 };
 
 float magnitudeSquared(const Vec3& vector);
+Vec3 normalise(const Vec3& vector);
 
 float dot(const Vec3& lhs, const Vec3& rhs);
 Vec3 cross(const Vec3& lhs, const Vec3& rhs);

@@ -20,6 +20,11 @@ float magnitudeSquared(const Vec3& vector)
 	return vector.x * vector.x + vector.y * vector.y + vector.z * vector.z;
 }
 
+Vec3 normalise(const Vec3& vector)
+{
+	return vector / std::sqrtf(magnitudeSquared(vector));
+}
+
 float dot(const Vec3& lhs, const Vec3& rhs) {
 	return lhs.x * rhs.x + lhs.y * rhs.y + lhs.z * rhs.z;
 }

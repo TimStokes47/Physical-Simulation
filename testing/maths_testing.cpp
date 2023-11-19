@@ -25,6 +25,15 @@ TEST(Vector3, SquareMagnitude) {
 	EXPECT_FLOAT_EQ(squareMagnitude, 32.25f);
 }
 
+TEST(Vector3, Normalise) {
+	Vec3 vector(4.0f, 1.0f, -3.5f);
+	Vec3 unitVector = normalise(vector);
+
+	EXPECT_NEAR(unitVector.x, 0.7396f, 0.0001f);
+	EXPECT_NEAR(unitVector.y, 0.1849f, 0.0001f);
+	EXPECT_NEAR(unitVector.z, -0.6472f, 0.0001f);
+}
+
 TEST(Vector3, DotProduct) {
 	Vec3 lhs(2.5f, 3.0f, 4.0f);
 	Vec3 rhs(1.5f, 0.0f, 1.0f);
