@@ -1,7 +1,10 @@
 #ifndef INPUT_H
 #define INPUT_H
 
+#include <vector>
+
 class Window;
+class EventListener;
 
 class Input {
 public:
@@ -11,8 +14,12 @@ public:
 	static bool isKeyPressed(int keycode);
 	static bool isMouseButtonPressed(int buttonCode);
 
+	static void registerEventListener(EventListener* newListener);
+	static void sendMousePressEvent(int buttonCode);
+
 private:
 	static void* _windowHandle;
+	static std::vector<EventListener*> _listeners;
 };
 
 #define GLFW_MOUSE_BUTTON_1   0
